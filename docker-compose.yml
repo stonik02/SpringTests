@@ -1,0 +1,25 @@
+version: '3'
+services:
+  site_back_postgres:
+    container_name: SpringTest
+    image: postgres:14
+    environment:
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty123
+      POSTGRES_DATABASE: test
+
+    volumes:
+      - postgres:/home/docker-volumes/Severstal/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - site_back
+    restart: unless-stopped 
+
+networks:
+  site_back:
+    driver: bridge
+
+volumes: 
+  postgres:

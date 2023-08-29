@@ -1,11 +1,14 @@
 package com.example.learning.services;
 
 import com.example.learning.DAO.dao.UserDAO;
-import com.example.learning.models.Users;
+import com.example.learning.models.Role;
+import com.example.learning.models.User;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@Service
 public class UserService {
 
 
@@ -17,11 +20,11 @@ public class UserService {
         this.usersDao = usersDao;
     }
 
-    public Users findUser(String id) throws SQLException {
+    public User findUser(String id) throws SQLException {
         return usersDao.findById(id);
     }
 
-    public void saveUser(Users user) throws SQLException {
+    public void saveUser(User user) throws SQLException {
         usersDao.save(user);
     }
 
@@ -29,13 +32,19 @@ public class UserService {
         usersDao.delete(id);
     }
 
-    public void updateUser(Users user) throws SQLException {
+    public void updateUser(User user) throws SQLException {
         usersDao.update(user);
     }
 
-    public List<Users> findAll() throws SQLException {
+    public List<User> findAll() throws SQLException {
         return usersDao.findAll();
     }
+
+    public void setRoles(Long userId, List<Role> roles) {
+        usersDao.setRoles(userId, roles);
+    }
+
+
 
 
 
